@@ -37,6 +37,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
+    - name: Create .env
+      run: cp .env.ci .env
+
     - name: Start containers
       run: docker compose up -d --wait --build --remove-orphans web chrome
 
