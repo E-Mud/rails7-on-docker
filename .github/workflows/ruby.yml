@@ -48,4 +48,4 @@ jobs:
 
     - name: Stop containers
       if: always()
-      run: docker compose --volumes down
+      run: docker compose down --volumes
