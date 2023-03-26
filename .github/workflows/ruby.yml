@@ -44,7 +44,7 @@ jobs:
       run: docker compose up -d --wait --build --remove-orphans web chrome
 
     - name: Run tests
-      run: docker compose run --rm web bin/rake
+      run: docker compose run --rm web bin/rake test:all
 
     - name: Stop containers
       if: always()
