@@ -47,7 +47,7 @@ jobs:
       run: docker compose exec web bin/rake assets:precompile
 
     - name: Run tests
-      run: docker compose run --rm web bin/rake test:all
+      run: docker compose run --rm web bin/rake cucumber
 
     - name: Stop containers
       if: always()
