@@ -43,6 +43,9 @@ jobs:
     - name: Start containers
       run: docker compose up -d --wait --build --remove-orphans web chrome
 
+    - name: Precompile assets
+      run: docker compose exec web bin/rake assets:precompile
+
     - name: Run tests
       run: docker compose run --rm web bin/rake test:all
 
