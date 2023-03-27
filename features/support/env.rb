@@ -41,13 +41,14 @@ rescue NameError
 end
 
 ENV['RAILS_ENV'] ||= 'test'
+ENV['HOST'] ||= '0.0.0.0'
 
 Capybara.register_driver :apparition do |app|
   browser_options = { 'remote-debugging-address' => Resolv.getaddress('chrome'), 'remote-debugging-port' => 9222 }
   Capybara::Apparition::Driver.new(app, remote: true, browser_options: browser_options)
 end
 
-Capybara.app_host = "http://web:3000"
+Capybara.app_host = "http://#{ENV['HOST']}:3000"
 Capybara.run_server = false
 Capybara.javascript_driver = :apparition
 
@@ -70,4 +71,3 @@ Capybara.javascript_driver = :apparition
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-
