@@ -14,7 +14,7 @@ Rails.application.configure do
     "localhost"             # The localhost reserved domain.
   ]
 
-  config.hosts << ENV['HOST'] if ENV['HOST']
+  config.hosts << ENV['APP_HOST'] if ENV['APP_HOST']
 
   # Configure 'rails notes' to inspect Cucumber files
   config.annotations.register_directories('features')

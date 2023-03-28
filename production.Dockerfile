@@ -3,6 +3,8 @@ FROM ruby:3.2.1-slim
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     build-essential \
     gnupg2 \
+    git \
+    curl \
     libpq-dev \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -32,12 +34,9 @@ COPY . .
 ARG SECRET_KEY_BASE=fakekeyforassets
 RUN bin/rails assets:clobber && bundle exec rails assets:precompile
 
-# Run database migrations when deploying to Render. It is not great, maybe there's a better way?
-# https://community.render.com/t/release-command-for-db-migrations/247/6
-ARG RENDER
-ARG DATABASE_URL
-RUN if [ -z "$RENDER" ]; then echo "var is unset"; else bin/rails db:migrate; fi
-
 EXPOSE 3000
+
+HEALTHCHECK --interval=10s --retries=10 --start-period=20s --timeout=10s \
+  CMD curl --fail http://localhost:3000/health || exit 1
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

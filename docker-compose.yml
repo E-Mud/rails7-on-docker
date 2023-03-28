@@ -1,4 +1,17 @@
 services:
+  prod:
+    build:
+      context: .
+      dockerfile: production.Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
   web:
     build: .
     volumes:
@@ -9,9 +22,7 @@ services:
     env_file:
       - .env
     environment:
-      - HISTFILE=/usr/src/app/log/.bash_history 
       - RAILS_ENV=${RAILS_ENV}
-      - HOST=web
     depends_on:
       db:
         condition: service_healthy

@@ -35,9 +35,8 @@ Docker Compose version v2.10.2
 
 ## Initial setup
 ```
-cp .env.example .env
-docker compose build
-docker compose run --rm web bin/rails db:setup
+cp .env.dev .env
+docker compose up --build web
 ```
 
 ## Running the Rails app
