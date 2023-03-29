@@ -1,4 +1,4 @@
-![CI](https://github.com/e-mud/rails7-on-docker/workflows/test.yml/badge.svg)
+![CI](https://github.com/e-mud/rails7-on-docker/actions/workflows/test.yml/badge.svg)
 
 Start here: https://github.com/e-mud/rails7-on-docker/generate
 
