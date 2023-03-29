@@ -1,6 +1,6 @@
-![Ruby](https://github.com/ryanwi/rails7-on-docker/workflows/Ruby/badge.svg)
+![Ruby](https://github.com/e-mud/rails7-on-docker/workflows/test/badge.svg)
 
-Start here: https://github.com/ryanwi/rails7-on-docker/generate
+Start here: https://github.com/e-mud/rails7-on-docker/generate
 
 # Rails 7 on Docker demo application
 
