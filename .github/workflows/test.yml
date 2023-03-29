@@ -40,6 +40,9 @@ jobs:
     - name: Start containers
       run: docker compose up -d --wait --build --remove-orphans prod chrome
 
+    - name: Precompile assets
+      run: RAILS_ENV=test docker compose run --rm web bin/rails assets:precompile
+
     - name: Run tests
       run: RAILS_ENV=test docker compose run --rm web bin/rake cucumber
 
