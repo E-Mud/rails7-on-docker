@@ -15,7 +15,6 @@ This app demonstrates Rails 7 with PostgreSQL, import maps, turbo, stimulus and 
 * Ruby 3.3
 * Dockerfile and Docker Compose configuration
 * PostgreSQL database
-* Redis
 * GitHub Actions for 
   * tests
   * Rubocop for linting

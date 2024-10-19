@@ -25,19 +25,3 @@ services:
           property: connectionString
       - key: SECRET_KEY_BASE
         sync: false # placeholder for a value to be added in the dashboard
-      - key: REDIS_HOST
-        fromService:
-          type: redis
-          name: lightning
-          property: host # available properties are listed below
-      - key: REDIS_PORT
-        fromService:
-          type: redis
-          name: lightning
-          property: port
-  - type: redis
-    name: lightning
-    ipAllowList: # required
-      - source: 0.0.0.0/0
-        description: everywhere
-    plan: free

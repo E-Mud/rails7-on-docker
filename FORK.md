@@ -5,5 +5,5 @@ Changes
 - [ ] ActiveStorage -> Shrine
 - [x] GoodJob
 - [x] ActionCable PostgreSQL adapter
-- [ ] Remove Redis
+- [x] Remove Redis
 - [ ] CI
