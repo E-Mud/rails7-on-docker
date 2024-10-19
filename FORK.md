@@ -4,5 +4,6 @@ Changes
 - [x] TailwindCSS
 - [ ] ActiveStorage -> Shrine
 - [x] GoodJob
+- [x] ActionCable PostgreSQL adapter
 - [ ] Remove Redis
 - [ ] CI
