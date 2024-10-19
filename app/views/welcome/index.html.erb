@@ -3,15 +3,15 @@
 <%= link_to "Articles", articles_path %>
 
 
-<h2>Stimulus Check</h2>
+<h2>AlpineJS Check</h2>
 
-<div data-controller="hello">
-  <input data-hello-target="name" type="text">
+<div x-data="{ name: '', greeting: '' }">
+  <input x-model="name" type="text">
 
-  <button data-action="click->hello#greet">
+  <button x-on:click="greeting = 'Hellor ' + name">
     Greet
   </button>
 
-  <span data-hello-target="output">
+  <span x-text="greeting">
   </span>
 </div>

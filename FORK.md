@@ -1,6 +1,6 @@
 Changes
 - [ ] RSpec -> Cucumber
-- [ ] StimulusJS -> AlpineJS
+- [x] StimulusJS -> AlpineJS
 - [x] TailwindCSS
 - [ ] ActiveStorage -> Shrine
 - [ ] GoodJob
