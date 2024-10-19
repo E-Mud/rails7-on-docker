@@ -3,6 +3,6 @@ Changes
 - [x] StimulusJS -> AlpineJS
 - [x] TailwindCSS
 - [ ] ActiveStorage -> Shrine
-- [ ] GoodJob
+- [x] GoodJob
 - [ ] Remove Redis
 - [ ] CI
