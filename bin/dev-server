@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+echo "bundle install..."
+bundle check || bundle install --jobs 4
+
+bin/setup
+
+# Remove a potentially pre-existing server.pid for Rails.
+rm -f /usr/src/app/tmp/pids/server.pid
+
+bin/rails s -p 3000 -b '0.0.0.0'

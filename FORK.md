@@ -1,7 +1,7 @@
 Changes
 - [ ] RSpec -> Cucumber
 - [ ] StimulusJS -> AlpineJS
-- [ ] TailwindCSS
+- [x] TailwindCSS
 - [ ] ActiveStorage -> Shrine
 - [ ] GoodJob
 - [ ] Remove Redis

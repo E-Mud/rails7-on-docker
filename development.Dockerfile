@@ -31,8 +31,6 @@ RUN gem update --system && gem install bundler
 
 WORKDIR /usr/src/app
 
-ENTRYPOINT ["./bin/docker-entrypoint-development"]
-
 EXPOSE 3000
 
 CMD ["./bin/rails", "server"]
