@@ -42,7 +42,12 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+gem "shrine"
+
+# Image processing gem will come in handy when creating various sizes of images,
+# so if you will need to do cropping or other image manipulations
+# for generating avatar thumbnail sizes, you will need it.
+# Also, you should note image_processing gem is also required for image type and size validations.
 gem "image_processing", "~> 1.2"
 
 group :development, :test do
