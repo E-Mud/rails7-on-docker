@@ -6,4 +6,5 @@ Changes
 - [x] GoodJob
 - [x] ActionCable PostgreSQL adapter
 - [x] Remove Redis
+- [x] Remove ActionText
 - [ ] CI
