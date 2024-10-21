@@ -61,9 +61,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "bundler-audit"
-  gem "rspec-rails"
   gem "rubocop-rails"
-  gem "rubocop-rspec"
 end
 
 group :development do
@@ -78,8 +76,14 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  gem "cucumber-rails", require: false
+  # database_cleaner is not required, but highly recommended
+  gem "database_cleaner"
 end
 
 gem "tailwindcss-rails", "~> 3.0"
 
 gem "good_job", "~> 4.4"
+
+gem "cuprite", "~> 0.15.1"

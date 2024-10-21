@@ -1,14 +1,12 @@
-<h1>Welcome</h1>
-
-<%= link_to "Articles", articles_path %>
+<h1>Welcome to this site</h1>
 
 
 <h2>AlpineJS Check</h2>
 
-<div x-data="{ name: '', greeting: '' }">
-  <input x-model="name" type="text">
+<div :test-id="'greet-form'" x-data="{ name: '', greeting: '' }">
+  <input name="name" x-model="name" type="text">
 
-  <button x-on:click="greeting = 'Hellor ' + name">
+  <button x-on:click="greeting = 'Hello, ' + name + '!'">
     Greet
   </button>
 
