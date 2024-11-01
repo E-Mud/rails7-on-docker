@@ -45,6 +45,10 @@ jobs:
       - name: Start containers
         run: docker compose up -d --wait ci
 
+      - name: Log
+        if: always()
+        run: docker compose logs ci
+
       - name: Precompile assets
         run: RAILS_ENV=test docker compose run --build --rm web bin/rails assets:precompile
 
