@@ -39,7 +39,7 @@ jobs:
         run: docker compose up -d --wait ci
 
       - name: Prepare DB
-        run: RAILS_ENV=test dcm run --rm --build web bin/rails db:setup
+        run: RAILS_ENV=test docker compose run --rm --build web bin/rails db:setup
 
       - name: Precompile assets
         run: RAILS_ENV=test docker compose run --rm web bin/rails assets:precompile
