@@ -30,13 +30,6 @@ jobs:
           tags: ${{ env.IMAGE_TAG }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
 
       - name: Setup env file
@@ -45,15 +38,22 @@ jobs:
       - name: Start containers
         run: docker compose up -d --wait ci
 
-      - name: Log
-        if: always()
-        run: docker compose logs ci
+      - name: Prepare DB
+        run: RAILS_ENV=test dcm run --rm --build web bin/rails db:setup
 
       - name: Precompile assets
-        run: RAILS_ENV=test docker compose run --build --rm web bin/rails assets:precompile
+        run: RAILS_ENV=test docker compose run --rm web bin/rails assets:precompile
 
       - name: Run tests
         run: RAILS_ENV=test docker compose run --rm web bin/rake cucumber
+
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push
         uses: docker/build-push-action@v6
