@@ -28,7 +28,7 @@ ActionController::Base.allow_rescue = false
 
 
 ENV['RAILS_ENV'] ||= 'test'
-ENV['HOST'] ||= '0.0.0.0'
+ENV['APP_HOST'] ||= '0.0.0.0'
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
@@ -59,7 +59,7 @@ Capybara.register_driver :cuprite do |app|
   Capybara::Cuprite::Driver.new(app, window_size: [ 1200, 800 ], browser_options: { 'no-sandbox': nil })
 end
 
-Capybara.app_host = "http://#{ENV['HOST']}:3000"
+Capybara.app_host = "http://#{ENV['APP_HOST']}:3000"
 Capybara.run_server = false
 Capybara.javascript_driver = :cuprite
 
