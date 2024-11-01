@@ -16,6 +16,17 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  test-runner:
+    build:
+      context: ./
+      dockerfile: development.Dockerfile
+    env_file:
+      - .env
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+    depends_on:
+      db:
+        condition: service_healthy
   ci:
     image: ${IMAGE_TAG}
     ports:
