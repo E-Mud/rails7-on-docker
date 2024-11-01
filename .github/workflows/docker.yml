@@ -35,17 +35,14 @@ jobs:
       - name: Setup env file
         run: cp .env.ci .env
 
-      - name: Prepare DB
-        run: RAILS_ENV=test docker compose run --rm --build test-runner bin/rails db:setup
+      - name: Prepare test runner
+        run: RAILS_ENV=test docker compose run --rm --build web bin/setup-test-runner
 
       - name: Start containers
         run: docker compose up -d --wait ci
 
-      - name: Precompile assets
-        run: RAILS_ENV=test docker compose run --rm test-runner bin/rails assets:precompile
-
       - name: Run tests
-        run: RAILS_ENV=test docker compose run --rm test-runner bin/rake cucumber
+        run: RAILS_ENV=test docker compose run --rm web bin/rake cucumber
 
       
       - name: Login to GitHub Container Registry
