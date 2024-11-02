@@ -71,7 +71,7 @@ jobs:
         # if: github.event_name != 'pull_request'
         with:
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.REGISTRY }}/${{ env.LATEST_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Generate artifact attestation
