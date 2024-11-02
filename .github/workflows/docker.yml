@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_TAG: e-mud/rails7-on-docker
+  IMAGE_TAG: ${{ github.repository }}
   REGISTRY: ghcr.io
 
 jobs:
@@ -42,6 +42,9 @@ jobs:
       - name: Setup env file
         run: cp .env.ci .env
 
+      - name: Wat
+        run: echo $IMAGE_TAG
+
       - name: Prepare test runner
         run: RAILS_ENV=test docker compose run --rm --build web bin/setup-test-runner
 
@@ -62,7 +65,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.REGISTRY }}/${{ env.LATEST_TAG }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}
 
       - name: Push
         id: push
@@ -70,13 +73,13 @@ jobs:
         # if: github.event_name != 'pull_request'
         with:
           push: true
-          # tags: ${{ env.REGISTRY }}/${{ env.LATEST_TAG }}
+          # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.LATEST_TAG}}
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_TAG}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
