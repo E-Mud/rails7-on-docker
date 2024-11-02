@@ -7,8 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_TAG: mysite:test
-  LATEST_TAG: mysite:latest
+  IMAGE_TAG: ${{ github.repository }}
   REGISTRY: ghcr.io
 
 jobs:
