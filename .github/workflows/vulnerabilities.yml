@@ -1,0 +1,22 @@
+name: Scan for security vulnerabilities in Ruby dependencies
+
+on: workflow_dispatch
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup env file
+        run: cp .env.ci .env
+
+      - name: Prepare lint runner
+        run: docker compose run --rm --build web bin/bundle install
+
+      - name: Scan for security vulnerabilities in Ruby dependencies
+        run: |
+          docker compose run --rm web bin/bundle exec bundler-audit --update
+          docker compose run --rm web bin/brakeman -q -w2 --no-pager
