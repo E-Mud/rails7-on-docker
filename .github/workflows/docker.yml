@@ -53,6 +53,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup env file
+        run: cp .env.ci .env
+
       - name: Prepare lint runner
         run: docker compose run --rm --build web bin/bundle install
 
