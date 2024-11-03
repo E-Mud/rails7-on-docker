@@ -11,8 +11,37 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  build-and-test-image:
+  build:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          tags: ${{ env.IMAGE_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          outputs: type=docker,dest=/tmp/docker-image.tar
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: /tmp/docker-image.tar
+
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
 
     permissions:
       contents: read
@@ -30,20 +59,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build
-        uses: docker/build-push-action@v6
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
-          load: true
-          tags: ${{ env.IMAGE_TAG }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          name: docker-image
+          path: /tmp
+      
+      - name: Load image
+        run: |
+          docker load --input /tmp/docker-image.tar
+          docker image ls -a 
 
 
       - name: Setup env file
         run: cp .env.ci .env
-
-      - name: Wat
-        run: echo $IMAGE_TAG
 
       - name: Prepare test runner
         run: RAILS_ENV=test docker compose run --rm --build web bin/setup-test-runner
