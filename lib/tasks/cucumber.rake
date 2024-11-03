@@ -33,12 +33,12 @@ begin
     end
 
     desc "Run all features"
-    task all: [ :ok, :wip ]
+    task all: %i(ok wip)
 
     task :statsetup do
       require "rails/code_statistics"
-      ::STATS_DIRECTORIES << %w[Cucumber\ features features] if File.exist?("features")
-      ::CodeStatistics::TEST_TYPES << "Cucumber features" if File.exist?("features")
+      STATS_DIRECTORIES << ["Cucumber features", "features"] if File.exist?("features")
+      CodeStatistics::TEST_TYPES << "Cucumber features" if File.exist?("features")
     end
   end
 
