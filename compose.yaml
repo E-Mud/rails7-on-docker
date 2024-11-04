@@ -17,7 +17,7 @@ services:
       db:
         condition: service_healthy
   ci:
-    image: ${IMAGE_TAG}
+    image: ${IMAGE_TAG:-railsondocker}
     ports:
       - "3000:3000"
     env_file:
