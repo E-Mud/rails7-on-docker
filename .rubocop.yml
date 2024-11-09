@@ -112,6 +112,8 @@ Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     default: '()'
     '%i': '()'
+Style/ClassMethodsDefinitions:
+  Enabled: false
 
 # Style/EndBlock:
 #   Enabled: true
