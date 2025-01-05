@@ -80,6 +80,9 @@ group :test do
   gem "cucumber-rails", require: false
   # database_cleaner is not required, but highly recommended
   gem "database_cleaner"
+
+  gem "rspec-expectations", "~> 3.13"
+  gem "rspec-mocks", "~> 3.13"
 end
 
 gem "tailwindcss-rails", "~> 3.0"
